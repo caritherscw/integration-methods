@@ -13,36 +13,36 @@
 #include <cmath>
 
 namespace MathFunctions {
-	template <typename E, typename C>
-	class Function {
+   template <typename E, typename C>
+   class Function {
 
-	public:
-		Function();
-		Function(const std::vector<E> &exponents, const std::vector<C> &coefficients);
+      public:
+         Function();
+         Function(const std::vector<E> &exponents, const std::vector<C> &coefficients);
 
-		void setCoefficient(const int index, const C coefficient);
-		void setExponent(const int index, const E exponent);
-		void setCoefficients(const std::vector<C> &coefficients);
-		void setExponents(const std::vector<E> &exponents);
+         void setCoefficient(const int index, const C coefficient);
+         void setExponent(const int index, const E exponent);
+         void setCoefficients(const std::vector<C> &coefficients);
+         void setExponents(const std::vector<E> &exponents);
 
-		C getCoefficient(const int index) const;
-		E getExponent(const int index) const;
-		std::vector<C> getCoefficients() const;
-		std::vector<E> getExponents() const;
+         C getCoefficient(const int index) const;
+         E getExponent(const int index) const;
+         std::vector<C> getCoefficients() const;
+         std::vector<E> getExponents() const;
 
-		E getDegree() const;
+         E getDegree() const;
 
-		virtual double evaluate(double x);
+         virtual double evaluate(double x);
 
-		~Function();
+         ~Function();
 
-	protected:
-		std::vector<E> exponents;
-		std::vector<C> coefficients;
-	};
+      protected:
+         std::vector<E> exponents;
+         std::vector<C> coefficients;
+   };
 
-	template <typename E, typename C>
-	std::ostream &operator <<(std::ostream &out, Function<E, C> &function);
+   template <typename E, typename C>
+   std::ostream &operator <<(std::ostream &out, Function<E, C> &function);
 }
 
 

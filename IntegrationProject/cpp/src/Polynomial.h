@@ -11,18 +11,18 @@
 #include "Function.h"
 
 namespace MathFunctions {
-	template<typename E, typename C>
-	class Polynomial : public Function<E, C> {
+   template<typename E, typename C>
+   class Polynomial : public Function<E, C> {
 
-	public:
-		Polynomial();
-		Polynomial(int degree);
-		Polynomial(const std::vector<E> &exponents, const std::vector<C> &coefficients);
+   public:
+      Polynomial();
+      Polynomial(int degree);
+      Polynomial(const std::vector<E> &exponents, const std::vector<C> &coefficients);
 
-		double evaluate(double x);
-		
-		~Polynomial();
-	};
+      double evaluate(double x);
+
+      ~Polynomial();
+   };
 }
 
 #endif /* POLYNOMIAL_H_ */
