@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<history>
+   <processor signature="gcc noversion nomachine -ansi -c -D_POSIX_SOURCE">
+      <target file="IntegrationMethods.o" lastModified="1520be9aaa8">
+         <source file="../../cpp/src/IntegrationMethods.cpp" lastModified="1520b8a8f00"/>
+      </target>
+      <target file="Properties.o" lastModified="1520be9aaa8">
+         <source file="../../cpp/src/Properties.cpp" lastModified="1520b85a530"/>
+      </target>
+      <target file="Function.o" lastModified="1520be9aaa8">
+         <source file="../../cpp/src/Function.cpp" lastModified="1520b9ef1c0"/>
+      </target>
+      <target file="IntegrationMain.o" lastModified="1520be9ae90">
+         <source file="../../cpp/src/IntegrationMain.cpp" lastModified="1520b949950"/>
+      </target>
+      <target file="Polynomial.o" lastModified="1520be9aaa8">
+         <source file="../../cpp/src/Polynomial.cpp" lastModified="1520b879d18"/>
+      </target>
+      <target file="Utilities.o" lastModified="1520be9aaa8">
+         <source file="../../cpp/src/Utilities.cpp" lastModified="1520b8078f8"/>
+      </target>
+   </processor>
+</history>

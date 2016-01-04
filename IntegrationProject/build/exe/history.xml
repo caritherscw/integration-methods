@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<history>
+   <processor signature="gcc -L../../cpp/src -lstdc++ -lm">
+      <target file="IntegrationProgramCPP" lastModified="1520be9ae90">
+         <source file="../objs/Utilities.o" lastModified="1520be9aaa8"/>
+         <source file="../objs/Properties.o" lastModified="1520be9aaa8"/>
+         <source file="../objs/IntegrationMethods.o" lastModified="1520be9aaa8"/>
+         <source file="../objs/Polynomial.o" lastModified="1520be9aaa8"/>
+         <source file="../objs/Function.o" lastModified="1520be9aaa8"/>
+         <source file="../objs/IntegrationMain.o" lastModified="1520be9ae90"/>
+      </target>
+   </processor>
+</history>
