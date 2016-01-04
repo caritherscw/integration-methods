@@ -1,0 +1,52 @@
+(This information is the same as in the IntegrationProgramDocumentation.pdf under the Runtime Setup section. This is used incase you are needing to see how to setup, compile, and run the program from a command line and .pdf file will not open.)
+
+Runtime Setup
+Download and Install the latest Java JRE 8 version onto your machine from
+https://www.java.com/en/download/.
+Download and extract the ant build 1.9.6 from https://ant.apache.org/bindownload.cgi. Depending on the
+system you have the packages to unzip you can either use .zip, .tar.gz, or .tar.bz2.
+For Windows use Cygwin to download a compatible gcc version following the directions here
+http://preshing.com/20141108/how-to-install-the-latest-gcc-on-windows/. Linux machine should already have
+the packages installed for gcc, if not then download these packages for your particular Linux OS.
+After downloading these you will need to set your path so your machine is using these versions of Java and ant.
+For Windows you will have to set the environment path for the Cygwin gcc.
+
+More information on setup you can find here http://ant.apache.org/manual/install.html#setup then
+lookup under your particular operating system. The locations that you will set should be the location
+where you have unzipped the ant build and installed the Cygwin and Java. Environment path should
+know the location of the bin folders. Again only Cygwin is installed for Windows to be able to use gcc to
+compile and link the CPP program for the ant build file.
+   o Windows and OS/2 (this example is if both Java, Apache, and Cygwin are located just in the C:
+drive)
+      set ANT_HOME=C:\apache-ant-1.9.6
+      set JAVA_HOME=C:\jdk1.8
+      set PATH=%PATH%;%ANT_HOME%\bin
+      set PATH=%PATH%;C:\Cygwin\bin
+   o Linux/Unix (bash) (this example is if the packages are located in the /usr/local directory)
+      export ANT_HOME=/usr/local/apache-ant-1.9.6
+      export JAVA_HOME=/usr/local/jdk1.8
+      export PATH=${PATH}:${ANT_HOME}/bin
+   o Linux/Unix (csh) (this example is if the packages are located in the /usr/local directory)
+      setenv ANT_HOME /usr/local/apache-ant-1.9.6
+      setenv JAVA_HOME /usr/local/jdk/jdk1.8
+      set path=( $path $ANT_HOME/bin )
+Once this has all been setup and you have the project is unzipped, you should be able to run the ant build. To
+create both CPP and Java projects you can use the command “ant” otherwise for Java use “ant javaprogram” or
+CPP use “ant cppprogram”. To clean up and remove the compiled files along with the executable for CPP and jar
+for Java run command “ant clean”.
+Once the projects have been compiled you can run each project.
+To run the CPP program you will need to cd to the exe directory within the build directory that was created
+when ant script ran.
+
+   For Windows: .\IntegrationProgramCPP.exe
+   For Linux: ./IntegrationProgramCPP
+
+To run the Java program you can cd to the jar directory within the build directory that was created when ant
+script ran.
+
+   For Windows: runintegrationprogram.bat
+   For Linux:
+      o chmod +x runintegrationprogram.sh
+      o runintegrationprogram.sh
+The chmod will change the permission in order to be able to run the .sh script that was automatically
+created by the ant script.
