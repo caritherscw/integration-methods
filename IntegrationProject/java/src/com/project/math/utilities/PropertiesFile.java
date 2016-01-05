@@ -8,21 +8,35 @@ import java.io.FileInputStream;
 import java.net.URL;
 import java.util.Properties;
 
+/**
+ * PropertiesFile - this class gets the strings to display to the user
+ * from a properties file. This allows easier changes to text and 
+ * if needed to translate for other langauges. 
+ */
 public class PropertiesFile {
 
    public static final String CONFIG_FILENAME = "/config.properties";
    private Properties properties;
 
+   // Constructor
    public PropertiesFile() {
       properties = new Properties();
    }
 
+   /**
+    * getPropertyValue - gets the property value or string from the 
+    * properties configuration file using a key.
+    *
+    * @param propertiesKey - the key to look up in config.properties file
+    * @return - returns the string that maps to the key
+   */
    public String getPropertyValue(String propertiesKey) {
 
       String result = "";
       InputStream inputStream = null;
 
       try {
+         // get ready the properties file
          inputStream = toURLFromString(CONFIG_FILENAME).openStream();
       }
       catch (IOException e1) {
@@ -56,6 +70,10 @@ public class PropertiesFile {
       return result;
    }
 
+   /**
+    * Both of these methods below help in load the properties file when running
+    * from the IDE or when in jar file.
+    */
    public String getURLString(String stringLocation) {
       Class<? extends PropertiesFile> classLocation = this.getClass();
       String absoluteURLString = "/" + classLocation.getPackage().getName();

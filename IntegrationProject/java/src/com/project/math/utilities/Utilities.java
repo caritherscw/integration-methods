@@ -7,13 +7,18 @@ import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Utilities - methods to help with what could be duplicate code
+ * within the main method. Suche methods include convert fraction to double,
+ * double to fraction, and validate input. 
+ */
 public class Utilities {
    /**
     * Converts a decimal to a fraction using continued fractions.
     * 
-    * @param decimal the decimal value to convert
-    * @param tolerance the accuracy of the conversion 
-    * @return a representation of the decimal as a fraction
+    * @param decimal - the decimal value to convert
+    * @param - tolerance the accuracy of the conversion 
+    * @return - a representation of the decimal as a fraction
     */
    public static String fraction(double decimal, double tolerance) 
    {
@@ -38,6 +43,12 @@ public class Utilities {
       return (sign * (int) num + "/" + (int) denom);
    }
 
+   /**
+    * Converts a fraction to a double
+    * 
+    * @param fraction - the fraction as a string
+    * @return - a decimal representation of the fraction
+    */
    public static Double fractionToDouble(String fraction) 
       throws ParseException, NumberFormatException {
       
@@ -70,6 +81,15 @@ public class Utilities {
       return exponents;
    }
 
+   /**
+    * squaringFunction - used to provide a quicker way of evaluating an exponent
+    * This is not used in the program because Horner's rule is quicker. When dealing 
+    * with polynomials.
+    *
+    * @param x - value to evaluate
+    * @param n - the exponent
+    * @param return - a double value of the x^n
+    */
    public static Double squaringFunction(Double x, Integer n) {
       if(n < 0) {
          return squaringFunction(1/x, -n);
@@ -88,6 +108,16 @@ public class Utilities {
       }
    }
 
+   /**
+    * validateDouble - validates that a user has entered a correct value such as
+    * a fraction, decimal, or integer. Re-ask user if invalid.
+    *
+    * @param keyboard - the scanner class to recieve input from user
+    * @message - the message that will ask user for input
+    * @error - the error to display if invalid
+    *
+    * @return - returns the double value if valid
+    **/
    public static double validateDouble(Scanner keyboard, String message, String error) {
       double returnValue = 0.0;
       boolean isError = true;
@@ -97,15 +127,26 @@ public class Utilities {
             returnValue = Utilities.fractionToDouble(keyboard.nextLine());
             isError = false;
          }
-         catch(InputMismatchException | ParseException | NumberFormatException e) {
-            System.out.println(error);
-            keyboard.nextLine();
+         catch(InputMismatchException | ParseException | NumberFormatException 
+               | ArithmeticException e) {
+
+            System.out.println("\n" + error + "\n");
          }
       } while(isError);
 
       return returnValue;
    }
 
+   /**
+    * validateInt - validates that a user has entered a correct value such as
+    * an integer. Re-ask user if invalid.
+    *
+    * @param keyboard - the scanner class to recieve input from user
+    * @message - the message that will ask user for input
+    * @error - the error to display if invalid
+    *
+    * @return - returns the integer value if valid
+    **/
    public static int validateInt(Scanner keyboard, String message, String error) {
       int returnValue = 0;
       boolean isError = true;
@@ -117,7 +158,7 @@ public class Utilities {
             isError = false;
          }
          catch(InputMismatchException e) {
-            System.out.println(error);
+            System.out.println("\n" + error + "\n");
             keyboard.nextLine();
          }
       } while(isError);
