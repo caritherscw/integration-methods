@@ -101,6 +101,11 @@ public class IntegrationMethods {
             index)/(newFunction.getExponent().get(index) + 1));
       }
 
+      newFunction.getExponent().add(newFunction.getExponent().size(), 0);
+      for(int index = 0; index < newFunction.getExponent().size(); index++) {
+         newFunction.getExponent().set(index, newFunction.getExponent().get(index) + 1);
+      }
+
       newFunction.getCoefficient().add(newFunction.getCoefficient().size(), 0.0);
       return newFunction.toString();
    }
