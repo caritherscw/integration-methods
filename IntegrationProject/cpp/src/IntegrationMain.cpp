@@ -171,7 +171,9 @@ int main() {
             const string stringArray[] = {convertPolynomial(newPolynomial), 
                Utilities::fraction(a, 0.0001), Utilities::fraction(b, 0.0001), 
                Utilities::convertDouble(answer)};
+            const string stringArrayIntegral[] = {IntegrationMethods::integralToString(newPolynomial)};
             cout << "\n" + props.getValue("SOLVE_SYMBOLIC", stringArray, 4) << endl;
+            cout << "\n" + props.getValue("SHOW_INTEGRAL", stringArrayIntegral, 1) << endl;
             break;
          }
          default:

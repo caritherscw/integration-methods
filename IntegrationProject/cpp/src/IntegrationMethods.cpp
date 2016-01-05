@@ -39,7 +39,7 @@ namespace MathFunctions {
 
    template <typename E, typename C>
    double IntegrationMethods::symbolicMethodForPolynomial(double a, double b, Function<E, C> &function) {
-      MathFunctions::Polynomial<E, C> newFunction(function.getCoefficients().size());
+      Polynomial<E, C> newFunction(function.getCoefficients().size());
 
       for(int index = 0; index < function.getCoefficients().size(); index++) {
          newFunction.setCoefficient(index + 1, function.getCoefficient(index)/(index + 1));
@@ -48,5 +48,21 @@ namespace MathFunctions {
       newFunction.setCoefficient(0, 0.0);
 
       return (newFunction.evaluate(b) - newFunction.evaluate(a));
+   }
+
+   template <typename E, typename C>
+   std::string IntegrationMethods::integralToString(Function<E, C> &function) {
+      Polynomial<E, C> newFunction(function.getCoefficients().size());
+
+      for(int index = 0; index < function.getCoefficients().size(); index++) {
+         newFunction.setCoefficient(index + 1, function.getCoefficient(index)/(index + 1));
+      }
+      newFunction.setCoefficient(0, 0.0);
+
+      std::stringstream ss;
+      ss.clear();
+      ss << newFunction;
+
+      return ss.str();
    }
 }
