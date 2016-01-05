@@ -11,8 +11,6 @@ import com.project.math.utilities.Utilities;
  * Assumption single variable polynomial
  * Example: 5x^2 - 2/3x + 1
  * @param <E>
- * @param <E>
- * @param <C>
  * @param <C>
  */
 public class Polynomial<E extends Integer, C extends Double> 

@@ -1,6 +1,12 @@
 /*
  * Function.cpp
  *
+ * Function - relation between a set of inputs and a set of
+ * outputs. Each input is related to exactly one output. 
+ * 
+ * param <E> - coefficients
+ * param <C> - exponents
+ *
  *  Created on: Dec 26, 2015
  *      Author: chris
  */
@@ -74,7 +80,8 @@ namespace MathFunctions {
 
    template <typename E, typename C>
    std::ostream &operator <<(std::ostream &out, Function<E, C> &function) {
-      if(function.getDegree() == -1) {
+      // check for basic function of degree 0 
+      if(function.getDegree() <= -1) {
          out << 0;
          return out;
       }
@@ -86,11 +93,13 @@ namespace MathFunctions {
          // do nothing and continue
       }
 
+      // go up to the first nonzero coefficient
       int indexFirstNonZero = function.getCoefficients().size() - 1;
       while(function.getCoefficient(indexFirstNonZero) == 0) {
          indexFirstNonZero--;
       }
 
+      // first coefficient will be different - is closer to number
       if(function.getCoefficient(indexFirstNonZero) < 0.0 
          && function.getCoefficient(indexFirstNonZero) != -1) {
 
@@ -116,6 +125,7 @@ namespace MathFunctions {
          // coefficient is 0 do nothing
       }
 
+      // exponent of 0 will not display. if 1 then display x otherwise x^exponent
       if(function.getExponent(indexFirstNonZero) == 0) {
          // exponent 0 do not print x
       }
@@ -126,6 +136,7 @@ namespace MathFunctions {
          out << "x^" << Utilities::fraction(function.getExponent(indexFirstNonZero), 0.00001);
       }
 
+      // add other terms to the out buffer
       for(int index = indexFirstNonZero - 1; index >= 0; index--) {
          if(function.getCoefficient(index) != 0) {
             if(function.getCoefficient(index) < 0.0 && function.getCoefficient(index) != -1) {

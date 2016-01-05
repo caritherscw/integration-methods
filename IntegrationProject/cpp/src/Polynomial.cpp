@@ -1,6 +1,15 @@
 /*
  * Polynomial.cpp
  *
+ * Polynomial - expression consisting of variables and coefficients.
+ * Only involves operations of addition, subtraction, multiplication, 
+ * and non-negative integer exponents. 
+ * 
+ * Assumption single variable polynomial
+ * Example: 5x^2 - 2/3x + 1
+ * @param <E>
+ * @param <C>
+ *
  *  Created on: Dec 26, 2015
  *      Author: chris
  */
@@ -10,6 +19,7 @@
 using namespace std;
 
 namespace MathFunctions {
+   // constructors
    template<typename E, typename C>
    Polynomial<E, C>::Polynomial() {
    }
@@ -30,7 +40,9 @@ namespace MathFunctions {
 
    template <typename E, typename C>
    double Polynomial<E, C>::evaluate(double x) {
+      // take the coefficient with highest degree
       double y = this->coefficients[this->coefficients.size() - 1];
+      // then each time before adding next coefficient to sum must multiply by x value
       for(int index = this->coefficients.size() - 2; index >= 0; index--) {
          y = this->coefficients[index] + y * x;
       }
@@ -38,6 +50,7 @@ namespace MathFunctions {
       return y;
    }
 
+   // destructor
    template<typename E, typename C>
    Polynomial<E, C>::~Polynomial() {
 

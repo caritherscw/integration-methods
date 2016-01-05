@@ -1,6 +1,9 @@
 /*
  * IntegrationMethods.cpp
  *
+ * These integration methods are the same as in the Java
+ * program of the project.
+ *
  *  Created on: Dec 29, 2015
  *      Author: chris
  */

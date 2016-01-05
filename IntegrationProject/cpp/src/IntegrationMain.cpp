@@ -20,6 +20,7 @@
 using namespace std;
 using namespace MathFunctions;
 
+// validate user has entered a valid fraction
 double validateFraction(string message, string errorMessage) {
    bool isValid = false;
    string fraction;
@@ -56,6 +57,7 @@ double validateFraction(string message, string errorMessage) {
    return decNum;
 }
 
+// validate that user entered a positive integer value
 int validatePositiveInt(string message, string errorMessage) {
    bool isValid = false;
    int integerValue = 0;
@@ -79,20 +81,7 @@ int validatePositiveInt(string message, string errorMessage) {
    return integerValue;
 }
 
-string convertInt(int number) {
-   stringstream ss;
-   ss.clear();
-   ss << number;
-   return ss.str();
-}
-
-string convertDouble(double number) {
-   stringstream ss;
-   ss.clear();
-   ss << number;
-   return ss.str();
-}
-
+// convert polynomial to string
 template <typename E, typename C>
 string convertPolynomial(Function<E, C> polynomial) {
    stringstream ss;
@@ -117,6 +106,7 @@ int main() {
    cout << props.getValue("WELCOME_TEXT") << endl;
 
    do {
+      // ask user for the degree of the polynomial
       degree = validatePositiveInt("\n" + props.getValue("ASK_FOR_DEGREE"), 
          props.getValue("INVALID_POSITIVE_INTEGER"));
 
@@ -124,16 +114,20 @@ int main() {
 
       cout << endl;
 
+      // ask user for the coefficients of the polynomial for each term
       for(int index = 0; index < newPolynomial.getCoefficients().size(); index++) {
-         string stringArray[] = {convertInt(index)};
+         string stringArray[] = {Utilities::convertInt(index)};
          coefficient = validateFraction(props.getValue("ASK_FOR_COEFFICIENT", 
             stringArray, 1), props.getValue("INVALID_DOUBLE"));
          newPolynomial.setCoefficient(index, coefficient);
       }
 
+      // ask user for starting point of integral
       a = validateFraction("\n" + props.getValue("ASK_FOR_A"), props.getValue("INVALID_DOUBLE"));
+      // ask user for the end point of integral
       b = validateFraction("\n" + props.getValue("ASK_FOR_B"), props.getValue("INVALID_DOUBLE"));
 
+      // have user choose the method of integration
       do {
          optionChosen = validatePositiveInt("\n" + props.getValue("CHOOSE_METHOD_MENU"), 
             props.getValue("INVALID_OPTION"));
@@ -144,25 +138,28 @@ int main() {
 
       cout << "\n" << endl;
 
+      // depending on user chosen option use that integration method
       double answer;
       switch(optionChosen) {
          case 1: {
+            // ask for number of columns
             numberOfColumns = validatePositiveInt("\n" + props.getValue("ASK_FOR_N"), 
                props.getValue("INVALID_POSITIVE_INTEGER"));
             answer = IntegrationMethods::rectangleMethod(a, b, numberOfColumns, newPolynomial);
             const string stringArray[] = {convertPolynomial(newPolynomial), 
                Utilities::fraction(a, 0.0001), Utilities::fraction(b, 0.0001), 
-               Utilities::convertDouble(answer), convertInt(numberOfColumns)};
+               Utilities::convertDouble(answer), Utilities::convertInt(numberOfColumns)};
             cout << "\n" + props.getValue("SOLVE_RECTANGLE", stringArray, 5) << endl;
             break;
          }
          case 2: {
+            // ask for number of columns
             numberOfColumns = validatePositiveInt("\n" + props.getValue("ASK_FOR_N"), 
                props.getValue("INVALID_POSITIVE_INTEGER"));
             answer = IntegrationMethods::trapezoidalMethod(a, b, numberOfColumns, newPolynomial);
             const string stringArray[] = {convertPolynomial(newPolynomial), 
                Utilities::fraction(a, 0.0001), Utilities::fraction(b, 0.0001), 
-               Utilities::convertDouble(answer), convertInt(numberOfColumns)};
+               Utilities::convertDouble(answer), Utilities::convertInt(numberOfColumns)};
             cout << "\n" + props.getValue("SOLVE_TRAPEZOIDAL", stringArray, 5) << endl;
             break;
          }
@@ -171,7 +168,8 @@ int main() {
             const string stringArray[] = {convertPolynomial(newPolynomial), 
                Utilities::fraction(a, 0.0001), Utilities::fraction(b, 0.0001), 
                Utilities::convertDouble(answer)};
-            const string stringArrayIntegral[] = {IntegrationMethods::integralToString(newPolynomial)};
+            const string stringArrayIntegral[] = {IntegrationMethods::
+               integralToString(newPolynomial)};
             cout << "\n" + props.getValue("SOLVE_SYMBOLIC", stringArray, 4) << endl;
             cout << "\n" + props.getValue("SHOW_INTEGRAL", stringArrayIntegral, 1) << endl;
             break;
@@ -180,6 +178,7 @@ int main() {
             cout << "\n" + props.getValue("INVALID_OPTION") << endl;
       }
 
+      // ask user if they want to integrate another polynomial
       do {
          cout << "\n" + props.getValue("CONTINUE_PROGRAM") << endl;
          cin >> continueProgram;
